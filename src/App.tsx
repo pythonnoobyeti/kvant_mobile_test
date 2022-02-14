@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, FC } from "react";
+import { useAppSelector, useAppDispatch } from "./components/hooks";
+import { getPassengers } from "./store/sagas/passengersSaga/passengersSagaActions";
+import { IPassengers, IPagesInfo } from "./interfaces";
+import { List } from "./components/List/List";
+import { NavMenu } from "./components/NavMenu/NavMenu";
+import UiLoading from "./components/UI/Loading/UiLoading";
+import "./App.css";
 
-function App() {
+const App: FC = () => {
+  const dispatcher = useAppDispatch();
+  const passengers: IPassengers = useAppSelector((state) => state.passengers);
+  const isLoading: boolean = useAppSelector((state) => state.isLoading);
+  const pagesInfo: IPagesInfo = useAppSelector((state) => state.pagesInfo);
+
+  useEffect(() => {
+    dispatcher(getPassengers(pagesInfo));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wrapper">
+      <List items={passengers} title={"Passengers List"} />
+      {isLoading && <UiLoading />}
+      <NavMenu />
     </div>
   );
-}
+};
 
 export default App;
