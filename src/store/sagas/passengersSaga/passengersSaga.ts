@@ -11,11 +11,10 @@ function* passengersWorker(data: IGetPassengersAction) {
   const {current, size} = yield data.payload
   const response: IPassengersResponce  = yield passengersService.fetchPassengers(current, size)
   yield put(setTotalPages(response.totalPages));
-  // _id вроде должен быть уникальным, но почему-то нет?
   const passengers: IPassengers = yield response.data.reduce((res: IPassengers, pas) => {
     return [
       ...res, 
-      { id: pas._id ,name: pas.name, airlineLogo: pas.airline[0].logo }
+      { id: pas._id  ,name: pas.name, airlineLogo: pas.airline[0].logo }
     ]
   }, [])
   yield put(setPassengers(passengers));

@@ -43,9 +43,9 @@ export const List: FC<IListProps> = ({ title, items }) => {
       <div className="list__items">
         {items.map((item, index) => (
           !(items.length === index + 1) ?
-          <PassengerCard passenger={item} />
+          <PassengerCard key={item.id} passenger={item} />
           :
-          <PassengerCard ref={loader} passenger={item} />
+          <PassengerCard key={item.id} ref={loader} passenger={item} />
         ))}
       </div>
     </div>
