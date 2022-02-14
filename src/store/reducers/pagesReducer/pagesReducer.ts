@@ -6,8 +6,8 @@ const pagesReducer = (state = initState, action: IActionsType):IPagesInfo  => {
   switch(action.type) {
     case 'SET_TOTAL_PAGES':
       return {...state, total: action.payload};
-    case 'SET_CURENT_PAGE':
-      return {...state, current: state.current + 1};;
+    case 'SET_CURRENT_PAGE':
+      return {...state, current: state.current + 1};
     default:
       return state;
   }

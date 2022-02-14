@@ -31,8 +31,6 @@ export const List: FC<IListProps> = ({ title, items }) => {
       threshold: 0
     };
     const observer = new IntersectionObserver(handleObserver, option);
-    console.log(loader.current);
-    
     if (loader.current) {
       observer.observe(loader.current);
     }
@@ -45,9 +43,9 @@ export const List: FC<IListProps> = ({ title, items }) => {
       <div className="list__items">
         {items.map((item, index) => (
           !(items.length === index + 1) ?
-          <PassengerCard key={item.id} passenger={item} />
+          <PassengerCard passenger={item} />
           :
-          <PassengerCard ref={loader} key={item.id} passenger={item} />
+          <PassengerCard ref={loader} passenger={item} />
         ))}
       </div>
     </div>

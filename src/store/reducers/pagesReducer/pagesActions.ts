@@ -1,5 +1,5 @@
 import { ISetCurrentPage, ISetTotalPages } from "../../../interfaces"
-import { SET_CURRENT_PAGE } from "../../../actions"
+import { SET_CURRENT_PAGE, SET_TOTAL_PAGES } from "../../../actions"
 
 export const setCurrentPage = (): ISetCurrentPage => {
   return {
@@ -9,7 +9,7 @@ export const setCurrentPage = (): ISetCurrentPage => {
 }
 export const setTotalPages = (totalPages: number): ISetTotalPages => {
   return {
-    type: SET_CURRENT_PAGE,
+    type: SET_TOTAL_PAGES,
     payload: totalPages,
   }
 }
