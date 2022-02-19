@@ -13,17 +13,18 @@ import "./List.scss";
 export const List: FC<IListProps> = ({ title, items }) => {
   const dispatcher = useAppDispatch()
   const loader = useRef<HTMLDivElement>(null);
+  const observer = useRef<IntersectionObserver>()
   const pagesInfo: IPagesInfo = useAppSelector((state) => state.pagesInfo);
+  
 
 
-  const handleObserver = useCallback((entries) => {
+  const handleObserver = (entries: any) => {
     const target = entries[0];
-    if (target.isIntersecting && pagesInfo.current > pagesInfo.total) {
+    if (target.isIntersecting && pagesInfo.current < pagesInfo.total) {
       dispatcher(setCurrentPage())
-      dispatcher(getPassengers(pagesInfo));
-      
-    }
-  }, []);
+      dispatcher(getPassengers({...pagesInfo, current: pagesInfo.current + 1}));
+    };
+  }
 
   useEffect(() => {
     const option = {
@@ -31,9 +32,10 @@ export const List: FC<IListProps> = ({ title, items }) => {
       rootMargin: "0px",
       threshold: 0
     };
-    const observer = new IntersectionObserver(handleObserver, option);
+    if (observer.current) observer.current.disconnect()
+    observer.current = new IntersectionObserver(handleObserver, option);
     if (loader.current) {
-      observer.observe(loader.current);
+      observer.current.observe(loader.current);
     }
   }, [items]);
 
