@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/infinite-scroll/static/css/main.851280f6.css",
-    "main.js": "/infinite-scroll/static/js/main.3a8ce34c.js",
-    "index.html": "/infinite-scroll/index.html",
-    "main.851280f6.css.map": "/infinite-scroll/static/css/main.851280f6.css.map",
-    "main.3a8ce34c.js.map": "/infinite-scroll/static/js/main.3a8ce34c.js.map"
+    "main.css": "/kvant_mobile_test/static/css/main.851280f6.css",
+    "main.js": "/kvant_mobile_test/static/js/main.3a8ce34c.js",
+    "index.html": "/kvant_mobile_test/index.html",
+    "main.851280f6.css.map": "/kvant_mobile_test/static/css/main.851280f6.css.map",
+    "main.3a8ce34c.js.map": "/kvant_mobile_test/static/js/main.3a8ce34c.js.map"
   },
   "entrypoints": [
     "static/css/main.851280f6.css",
